@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -9,9 +8,12 @@ int main(int argc, char **argv)
     int arr[7] = {1, 2, 3, 4, 5, 7, 9};
 
     std::vector<int> v(arr, arr + 7);
+    std::vector<int> v2 = {1,3,6,5,6,7};
+    std::vector<int> v3{1,3,6,5,6,7};
+    std::vector<int> v4({1,3,6,5,6,7});
 
     v.insert(v.begin(), arr, arr + 7);
-    v.insert(v.end(), {7, 9, 8, 6, 2, 42, 63});
+    v.insert(v.begin() +2 , {7, 9, 8, 6, 2, 42, 63});
     v.insert(v.begin(), 3, 88);
     v.insert(v.begin() + 3, 1996);
 
@@ -20,6 +22,14 @@ int main(int argc, char **argv)
     v.insert(v.begin() + 4, std::move(x));
     std::cout << x << " " << sizeof(x) << '\n';
 
+    std::copy(v.begin(), v.end(), std::ostream_iterator<int>(cout, " "));
+    std::cout << "\nv.size()= " << v.size() << '\n';
+    v.erase(v.begin());
+    std::copy(v.begin(), v.end(), std::ostream_iterator<int>(cout, " "));
+    std::cout << "\nv.size()= " << v.size() << '\n';
+    v.erase(v.begin(), v.begin() + 4);
+    std::copy(v.begin(), v.end(), std::ostream_iterator<int>(cout, " "));
+    std::cout << "\nv.size()= " << v.size() << '\n';
     /*
         // Constant Iterator
         v.crbegin();
@@ -35,9 +45,18 @@ int main(int argc, char **argv)
         v.begin();
     */
 
+    // If index not exits, error outboud
     v.at(6) = 10;
 
     std::copy(v.begin(), v.end(), std::ostream_iterator<int>(cout, " "));
+    std::cout << "\nv.size()= " << v.size() << '\n';
+    std::copy(v2.begin(), v2.end(), std::ostream_iterator<int>(cout, " "));
+    std::cout << std::endl;
+    std::copy(v3.begin(), v3.end(), std::ostream_iterator<int>(cout, " "));
+    std::cout << std::endl;
+    std::copy(v4.begin(), v4.end(), std::ostream_iterator<int>(cout, " "));
+    std::cout << std::endl;
+
     // for (auto it = v.begin(); it != v.end(); ++it)
     // {
     //     std::cout << *it << ' ';
