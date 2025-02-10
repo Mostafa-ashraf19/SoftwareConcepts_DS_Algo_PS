@@ -89,6 +89,13 @@ int main(int argc, char **argv)
     std::vector<int> v8(std::move(v7));
     std::cout << "Size of v7 after move: " << v7.size() << '\n';
 
+
+    std::vector<int> v9({10, 11, 7, 33, 5, 1});
+    rotate(v9.begin(), v9.begin()+ 6, v9.end()); // left rotate(anti clock wise) +ve begin
+    rotate(v9.begin(), v9.begin() - 3, v9.end()); // right rotate(clock wise) -ve begin
+
+    cout << v9;
+
     std::cout << std::endl;
     return 0;
 }
