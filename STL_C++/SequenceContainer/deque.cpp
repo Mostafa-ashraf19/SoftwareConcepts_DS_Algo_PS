@@ -75,6 +75,7 @@ int main(int argc, char **argv)
     auto _allocator = dq.get_allocator();
     cout << _allocator.address(2600) << '\n';
 
+    std::cout << dq[0] << '\n';
     std::cout << "1: " << dq;
 
     std::cout << "dq.size()= " << dq.size();

@@ -10,6 +10,7 @@ int main(int argc, char **argv)
     int arr2[ARR_SIZE2] = {63, 252, 3, 3, 2, 3, 166};
     // doubly linked list
     std::list<int> l;
+
     l.push_back(2);
     l.push_front(1);
     // l.pop_back();
@@ -25,29 +26,30 @@ int main(int argc, char **argv)
     std::cout << "l.size()= " << l.size() << '\n';
     copy(l.begin(), l.end(), std::ostream_iterator<int>(cout, " "));
     std::cout << std::endl;
+    if (false)
+    {
+        l.remove_if([](int x)
+                    { return x == 3; });
+        std::cout << "l.size()= " << l.size() << '\n';
+        copy(l.begin(), l.end(), std::ostream_iterator<int>(cout, " "));
+        std::cout << std::endl;
 
-    l.remove_if([](int x)
-                { return x == 3; });
-    std::cout << "l.size()= " << l.size() << '\n';
-    copy(l.begin(), l.end(), std::ostream_iterator<int>(cout, " "));
-    std::cout << std::endl;
+        // remove EVERY(value) exits in list, expect list of pointers.
+        // l.remove()
+        // remove range OR index based on Iterator.
+        // l.erase()
 
-    // remove EVERY(value) exits in list, expect list of pointers.
-    // l.remove()
-    // remove range OR index based on Iterator.
-    // l.erase()
+        l.remove_if([](int x)
+                    { return x == 3; });
+        // Sort is O(NlogN) --> merge sort
+        l.sort(std::less<int>());
+        copy(l.begin(), l.end(), std::ostream_iterator<int>(cout, " "));
+        std::cout << std::endl;
 
-    l.remove_if([](int x)
-                { return x == 3; });
-    // Sort is O(NlogN) --> merge sort
-    l.sort(std::less<int>());
-    copy(l.begin(), l.end(), std::ostream_iterator<int>(cout, " "));
-    std::cout << std::endl;
-
-    l.sort(std::greater<int>());
-    copy(l.begin(), l.end(), std::ostream_iterator<int>(cout, " "));
-    std::cout << std::endl;
-
+        l.sort(std::greater<int>());
+        copy(l.begin(), l.end(), std::ostream_iterator<int>(cout, " "));
+        std::cout << std::endl;
+    }
     // l.merge();
 
     // Transfer elements from one list to another,
@@ -55,13 +57,18 @@ int main(int argc, char **argv)
     list<int> l2(arr, arr + ARR_SIZE);
     // Transfare l2 to l
     l.splice(l.begin(), l2); // For whole list
+    std::cout << "1st Splice result: ";
+    copy(l.begin(), l.end(), std::ostream_iterator<int>(cout, " "));
+    std::cout << std::endl;
     // l1.splice(l.begin(), l2, l2.begin()); // For single element
     // l1.splice(l.begin(), l2, l2.begin(), l2.end()); // For range of elements.
-    // std::next(it, value):
     // An iterator of type InputIt that holds the nth successor (or -nth predecessor if n is negative) of iterator it.
+    // std::next(it, value):
     l.splice(l.begin(), l, next(l.begin(), 3),
              l.end());
-
+    std::cout << "2nd Splice result: ";
+    copy(l.begin(), l.end(), std::ostream_iterator<int>(cout, " "));
+    std::cout << std::endl;
     // Removes all duplicate consecutive elements from the list. It works only on sorted list.
     l.sort();
     l.unique();
