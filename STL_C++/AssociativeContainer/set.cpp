@@ -55,6 +55,12 @@ int main(int argc, char **argv)
     auto res = s.equal_range(3); // reutrn both lower and upper bound.
     std::cout << *res.first << " " << *res.second << '\n';
     std::cout << *s.upper_bound(66) << " " << *s.lower_bound(-1) << '\n';
+    std::cout << *s.upper_bound(1000) << " " << *s.lower_bound(10) << '\n';
+    std::cout << *s.end() << '\n';
+    std::cout << s.count(1000) << '\n';
+    std::cout << s.count(500) << '\n';
+    
+
 
     std::cout << '\n';
 

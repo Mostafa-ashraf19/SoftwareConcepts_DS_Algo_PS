@@ -56,6 +56,9 @@ int main(int argc, char **argv)
     std::cout << *res.first << " " << *res.second << '\n';
     std::cout << *ms.upper_bound(66) << " " << *ms.lower_bound(-1) << '\n';
 
+    std::cout << ms.count(5) << '\n';
+    std::cout << ms.count(6) << '\n';
+
     std::cout << '\n';
 
     std::cout << std::endl;

@@ -54,8 +54,10 @@ void mergeSort(std::vector<T> &arr, int l, int r)
     {
         int m = l + (r - l) / 2;
 
+        // Divide
         mergeSort(arr, l, m);
         mergeSort(arr, m + 1, r);
+        // Conqure
         merge(arr, l, m, r);
     }
 }

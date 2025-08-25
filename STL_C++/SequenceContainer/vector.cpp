@@ -5,6 +5,7 @@ template <typename T>
 class extendedVector : public std::vector<T>
 {
 public:
+    // To enable inheritance.
     using std::vector<T>::vector;
 
     void right_rotate();
@@ -105,6 +106,8 @@ int main(int argc, char **argv)
     std::vector<int> v2 = {1, 3, 6, 5, 6, 7};
     std::vector<int> v3{1, 3, 6, 5, 6, 7};
     std::vector<int> v4({1, 3, 6, 5, 6, 7});
+
+    v.push_back(6);
 
     v.insert(v.begin(), arr, arr + 7);
     v.insert(v.begin() + 2, {7, 9, 8, 6, 2, 42, 63});

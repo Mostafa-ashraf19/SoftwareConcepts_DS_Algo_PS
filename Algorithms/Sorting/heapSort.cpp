@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Heapify its a buildMaxHeap but for part of alreadt sorted array, 
+// Heapify its a buildMaxHeap but for part of already sorted array, 
 // Complete binary tree to max/min-heap conversion.
 // i is position to check validate max-heap condition, parent node > child node (left/right)
 template<typename T>

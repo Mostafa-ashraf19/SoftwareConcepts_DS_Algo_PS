@@ -1,18 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+enum METHED_TYPE
+{
+    METHOD_1 = 1,
+    METHOD_2 = 2,
+    METHOD_3 = 3,
+    METHOD_4 = 4
+};
+
+struct Node
+{
+    int value;
+    Node *next;
+};
+
 class singlyLinkedList
 {
 private:
-    struct Node
-    {
-        int value;
-        Node *next;
-    };
 
     Node *head, *tail;
     int _size;
-
+    Node* recursiveReverse(Node* node);
 public:
     singlyLinkedList();
     ~singlyLinkedList();
@@ -30,7 +39,65 @@ public:
     inline bool isEmpty() const;
     inline bool isFull() const;
     void clear();
+
+    void recursiveReverse();
+    int get_nth_back(int n, const METHED_TYPE &m);
+    void delete_node_with_key(const int &val);
+    void swap_pairs();
+    void delete_even_positions();
+    void insert_sorted(const int &value);
 };
+
+void singlyLinkedList::delete_node_with_key(const int& val) {
+    
+}
+
+void singlyLinkedList::swap_pairs() {
+
+}
+
+void singlyLinkedList::delete_even_positions() {
+
+}
+
+void singlyLinkedList::insert_sorted(const int& value) {
+
+}
+
+int singlyLinkedList::get_nth_back(int pos, const METHED_TYPE &m = METHOD_1)
+{
+    if (!head || size() == 0)
+        throw -1;
+
+    switch (m)
+    {
+    case METHOD_1:
+    {
+
+        int trgtPos = size() - pos;
+        Node *temp = head;
+        for (int i = 0; i < trgtPos; ++i)
+            temp = temp->next;
+        return temp->value;
+    }
+    case METHOD_2:
+    {
+        Node *slow = head, *fast = head;
+        for (int i = 0; i < pos; i++)
+        {
+            fast = fast->next;
+        }
+        while (fast)
+        {
+            slow = slow->next;
+            fast = fast->next;
+        }
+        return slow->value;
+    }
+    default:
+        throw -1;
+    }
+}
 
 singlyLinkedList::singlyLinkedList() : head{nullptr}, tail{nullptr}, _size{0} {}
 singlyLinkedList::~singlyLinkedList()
@@ -81,11 +148,12 @@ void singlyLinkedList::insert(const int &index, const int &value)
         Node *slow = nullptr;
         Node *fast = head;
 
-        while (count--) {
+        while (count--)
+        {
             slow = fast;
             fast = fast->next;
         }
-        Node* newNode = new Node{value, nullptr};
+        Node *newNode = new Node{value, nullptr};
         newNode->next = slow->next;
         slow->next = newNode;
     }
@@ -105,6 +173,7 @@ void singlyLinkedList::pop_front()
     --_size;
     delete temp;
 }
+
 void singlyLinkedList::pop_back()
 {
     remove(_size - 1);
@@ -139,10 +208,26 @@ void singlyLinkedList::remove(const int &index)
     delete fast;
     --_size;
 }
-void singlyLinkedList::reverse() {
-    Node* prev = nullptr;
-    Node* curr = head;
-    Node* nextNode = nullptr;
+
+Node* singlyLinkedList::recursiveReverse(Node* node) {
+    if(node && node->next) {
+        Node* rem = recursiveReverse(node->next);
+        rem->next = node;
+        node->next = nullptr;
+    }
+    return node;
+}
+
+void singlyLinkedList::recursiveReverse() {
+    recursiveReverse(head);
+    swap(head, tail);
+}
+
+void singlyLinkedList::reverse()
+{
+    Node *prev = nullptr;
+    Node *curr = head;
+    Node *nextNode = nullptr;
 
     tail = head;
 
@@ -154,8 +239,21 @@ void singlyLinkedList::reverse() {
         curr = nextNode;
     }
     head = prev;
-
 }
+
+// bool singlyLinkedList::search(int value)
+// {
+
+// Node *node = head;
+// while (node)
+// {
+//     if (node->value == value)
+//         return true;
+//     node = node->next;
+// }
+// return false;
+// }
+
 bool singlyLinkedList::search(const int &value)
 {
     Node *node = head;
@@ -209,7 +307,7 @@ int main(int argc, char **argv)
 
     std::function<void(int)> f = [](int ele)
     {
-        std::cout << ele << '\n';
+        std::cout << ele << ' ';
     };
 
     singlyLinkedList sll;
@@ -227,7 +325,7 @@ int main(int argc, char **argv)
     sll.push_back(90);
     sll.push_front(160);
 
-    sll.insert(4,30);
+    sll.insert(4, 30);
 
     std::cout << sll.size() << "\n";
     sll.traverse(f);
@@ -235,12 +333,19 @@ int main(int argc, char **argv)
     std::cout << "\n";
     sll.traverse(f);
 
-
     sll.push_back(966);
     sll.push_front(2000);
 
     std::cout << "\n";
     sll.traverse(f);
+    std::cout << "\n";
+    std::cout << sll.size() << '\n';
+    std::cout << "val is= " << sll.get_nth_back(8, METHOD_1) << '\n';
+
+    sll.recursiveReverse();
+    sll.traverse(f);
+    std::cout << "\n";
+
     // std::cout << sll.search(160) << "\n";
     // std::cout << sll.search(20) << "\n";
 
