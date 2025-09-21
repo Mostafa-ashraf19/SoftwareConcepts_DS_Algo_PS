@@ -58,6 +58,16 @@ Pointer to Pointer: A pointer that stores the address of another pointer.
 Pointer Arithmetic: You can perform arithmetic on pointers, useful in arrays and other memory structures.
 Smart Pointers: Modern C++ provides smart pointers (e.g., std::unique_ptr, std::shared_ptr) to manage memory automatically and prevent memory leaks.
 
+
+Advantage of exception handling are :-
+Remove error-handling code from the software’s main line of code.
+A method writer can choose to handle certain exceptions and delegate others to the caller.
+An exception that occurs in a function can be handled anywhere in the function call stack.
+Separating Error-Handling Code from “Regular” Code.
+Propagating Errors Up the Call Stack.
+
+
+
 */
 
 // class Base
